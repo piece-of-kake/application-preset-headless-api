@@ -13,8 +13,9 @@
         "piece-of-kake/application": "dev-main",
         "slim/slim": "^4.8",
         "php-di/php-di": "^6.3",
-        "php": "^7.0",
-        "ext-json": "*"
+        "php": "^7.0 || ^8.0",
+        "ext-json": "*",
+        "slim/psr7": "^1.4"
     },
     "autoload": {
         "psr-4": {

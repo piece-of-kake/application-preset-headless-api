@@ -2,6 +2,8 @@
 
 namespace App;
 
+use PoK\ValueObject\TypeString;
+
 class ApiControllerManager {
     private $app;
     
@@ -14,7 +16,7 @@ class ApiControllerManager {
     {
         $this->app->any($route, function ($request, $response, $args) use ($class) {
             $controller = new $class($request, $this);
-            $controllerResponse = $controller(...array_values($args));
+            $controllerResponse = $controller(new TypeString(array_shift($args)), new TypeString(array_shift($args)));
             $response->getBody()->write(json_encode($controllerResponse->getContent()));
             $response = $response->withStatus($controllerResponse->getCode()->getValue());
             foreach ($controllerResponse->getHeaders() as $name => $value) {
